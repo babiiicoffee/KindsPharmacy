@@ -1,0 +1,34 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "My tutorial",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiekind/judeTutorial.git"
+  },
+  "keywords": [
+    "Node",
+    "Express"
+  ],
+  "author": "Judilyn But-anon (Student), Christopher Alonzo (my Mentor)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiekind/judeTutorial/issues"
+  },
+  "homepage": "https://github.com/xiekind/judeTutorial#readme"
+}
