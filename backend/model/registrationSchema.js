@@ -14,7 +14,7 @@ let Users = new Schema({
         type: Number,
         required: true
     },
-    emai : {
+    email : {
         type: String,
         required: true
     },

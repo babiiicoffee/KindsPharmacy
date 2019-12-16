@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class Register extends Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class Register extends Component {
     }
 
     onChange = (e) => {
-        this.setState({ [e.target.id]: e.target.value })
+        this.setState({[e.target.id]: e.target.value})
     }
 
     handleSubmit = (e) => {
@@ -24,10 +26,26 @@ class Register extends Component {
         if (firstname.length !== 0 && lastname.length !== 0 && email.length !== 0 && password !== 0) {
             if (password === confirmPassword) {
                 if (age >= 18) {
-                    this.setState({ error: false })
+                    const data = {
+                        fname: firstname,
+                        lname: lastname,
+                        age: age,
+                        email: email,
+                        password: password
+                    }
                     console.log("Success")
+                    axios.post('http://localhost:8081/user/register', data)
+                        .then(result => {
+                            // alert(result.data, "result")
+                            console.log(result.data)
+                            this.setState({ error: false })
+
+                        }).catch(error => {
+                            alert(error, "error")
+                            this.setState({ error: true })
+                        })
                 } else {
-                    this.setState({error:true})
+                    this.setState({ error: true })
                     console.log("You are not allowed to register")
                 }
             } else {
@@ -36,7 +54,7 @@ class Register extends Component {
             }
         } else {
             this.setState({ error: true })
-            console.log("Error\nPlease fill up all the fields")
+            console.log("Error \n Please fill up all the fields")
         }
     }
 
@@ -47,12 +65,12 @@ class Register extends Component {
                 <h1>Register</h1>
                 <hr />
                 <form onSubmit={this.handleSubmit}>
-                    First name : <input 
-                    type="text" 
-                    id="firstname" 
-                    onChange={e => this.onChange(e)}
-                    name="firstname"
-                    autoComplete="firstname"
+                    First name : <input
+                        type="text"
+                        id="firstname"
+                        onChange={e => this.onChange(e)}
+                        name="firstname"
+                        autoComplete="firstname"
                     >
                     </input><br />
                     Last name : <input type="text" id="lastname" onChange={e => this.onChange(e)} ></input><br />
@@ -61,7 +79,7 @@ class Register extends Component {
                     Password : <input type="password" id="password" onChange={e => this.onChange(e)}></input><br />
                     Confirm Password : <input type="password" id="confirmPassword" onChange={e => this.onChange(e)}></input><br />
                     <button onClick={this.handleSubmit}>Submit</button>
-                    <button>Cancel</button>
+                    <Link to="/"><button>Cancel</button></Link>
                 </form>
             </div>
         )
